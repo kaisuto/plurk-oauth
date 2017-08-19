@@ -44,6 +44,7 @@ class PlurkAPI:
         self._authorized = True
 
     def callAPI(self, path, options=None):
+        options = {key: str(value) for key, value in options.items()}
         self._error['code'], self._content, self._error['reason'] = self._oauth.request(
             path, None, options)
         self._error['content'] = json.loads(self._content)
